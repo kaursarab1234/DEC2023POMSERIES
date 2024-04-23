@@ -8,6 +8,8 @@ import com.qa.opencart.logger.Log;
 import com.qa.opencart.utils.ElementUtil;
 import com.qa.opencart.utils.TimeUtil;
 
+import io.qameta.allure.Step;
+
 public class LoginPage {
 	private WebDriver driver;
 	private ElementUtil eleUtil;
@@ -26,6 +28,7 @@ public class LoginPage {
 	}
 
 	// 3. Public Page Actions/Method
+	@Step("login page title")
 	public String getLoginPageTitle() {
 		String title = eleUtil.waitForTitleIs(AppConstants.LOGIN_PAGE_TITLE, TimeUtil.DEFAULT_MEDIUM_TIME);
 		//System.out.println("login page title : " + title);

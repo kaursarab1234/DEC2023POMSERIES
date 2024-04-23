@@ -18,6 +18,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.qa.opencart.exceptions.ElementException;
 
+import io.qameta.allure.Step;
+
 
 
 public class ElementUtil {
@@ -79,7 +81,7 @@ private WebDriver driver;
 	public WebElement getElement(String locatorType, String locatorValue) {
 		return driver.findElement(getBy(locatorType, locatorValue));
 	}
-
+@Step("getelement :{0}")
 	public WebElement getElement(By locator) {
 		WebElement element = null;
 

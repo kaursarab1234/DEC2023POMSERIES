@@ -6,8 +6,18 @@ import org.testng.annotations.Test;
 import com.qa.opencart.constants.AppConstants;
 import com.qa.opencart.errors.AppError;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
+@Epic("Epic 100:Design open cart page")
+@Story("US 101:LOGIN PAGE FEATURES")
+@Feature("FEATURE200")
 public class LoginPageTest extends BaseTest{
-	
+	@Description("checking login page title")
+	@Severity(SeverityLevel.MINOR)
 	@Test(priority = 1)
 	public void loginPageTitleTest() {
 		String actTitle = loginPage.getLoginPageTitle();
