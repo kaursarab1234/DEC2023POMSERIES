@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Properties;
 
 import org.openqa.selenium.OutputType;
@@ -11,6 +13,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.io.FileHandler;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import com.qa.opencart.errors.AppError;
 import com.qa.opencart.exceptions.BrowserException;
@@ -32,7 +35,15 @@ public class DriverFactory {
 		case "chrome":
 
 			//driver = new ChromeDriver(op.getChromeOptions());
-			tdriver.set(new ChromeDriver(op.getChromeOptions()));
+			if(Boolean.parseBoolean(prop.getProperty("remote")))
+					{
+				init_remoteDriver("chrome");
+			}
+			else
+			{
+				tdriver.set(new ChromeDriver(op.getChromeOptions()));	
+			}
+			//tdriver.set(new ChromeDriver(op.getChromeOptions()));
 			break;
 
 		
@@ -115,4 +126,39 @@ public class DriverFactory {
 
 		return path;
 	}
+	private void init_remoteDriver(String browserName) {
+
+		System.out.println("Running tests on Remote GRID on browser: " + browserName);
+
+		try {
+			switch (browserName.toLowerCase().trim()) {
+			case "chrome":
+
+				tdriver.set(new RemoteWebDriver(new URL(prop.getProperty("huburl")),op.getChromeOptions()));
+				break;
+
+			//case "firefox":
+
+				//..tdriver.set(
+						//new RemoteWebDriver(new URL(prop.getProperty("huburl")), OptionsManager.getFirefoxOptions()));
+				//break;
+
+			//case "edge":
+				//tdriver.set(new RemoteWebDriver(new URL(prop.getProperty("huburl")), optionsManager.getEdgeOptions()));
+				//break;
+
+			default:
+				System.out.println("plz pass thr right supported browser on GRID....");
+				break;
+			}
+
+		}
+
+		catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+
 }

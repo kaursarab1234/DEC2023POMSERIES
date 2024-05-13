@@ -38,7 +38,7 @@ pipeline
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     git 'https://github.com/kaursarab1234/DEC2023POMSERIES.git'
-                    bat "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/TestRunner/testreg.xml -Denv=dev"
+                    bat "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/TestRunner/Testreg.xml -Denv=dev"
                     
                 }
             }
@@ -58,7 +58,7 @@ pipeline
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     git 'https://github.com/kaursarab1234/DEC2023POMSERIES.git'
-                    bat "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/TestRunner/testreg.xml -Denv=qa"
+                    bat "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/TestRunner/Testreg.xml -Denv=qa"
                     
                 }
             }
@@ -102,7 +102,7 @@ pipeline
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     git 'https://github.com/kaursarab1234/DEC2023POMSERIES.git'
-                    bat "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/TestRunner/testreg.xml -Denv=stage"
+                    bat "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/TestRunner/Testreg.xml -Denv=stage"
                     
                 }
             }
